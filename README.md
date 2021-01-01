@@ -5,11 +5,12 @@
 Bikeshare
 
 ### Description
-Describe what your project is about and what it does
+Allows user to select data file (washington, new york city or chicago) and review data and / or various statistics for bikeshare company data
 
 ### Files used
-Include the files used
+bikeshare.py
+[data] washington.csv, new_york_city.csv, chicago.csv
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+Udacity course information
 
