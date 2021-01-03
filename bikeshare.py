@@ -2,6 +2,7 @@ import time
 import datetime
 import pandas as pd
 import numpy as np
+from tabulate import tabulate
 
 #declare constant dictionaries
 CITY_DATA = { 'chicago': 'chicago.csv',
@@ -241,8 +242,8 @@ def view_raw_data(df):
             restart = input('\nWould you like to like to see rows {} to {} ({} total rows)? Enter yes to continue or no to view summary statistics.\n'.format(rowfrom,rowto,numrows))
 
             if restart.lower()=='yes':
-                print(df.iloc[rowfrom:rowto,:])
-
+                #print(df.iloc[rowfrom:rowto,:])
+	print(tabulate(df.iloc[np.arange(rowfrom,rowto)], headers ="keys"))
             elif restart.lower() == 'no':
                 raise UserAborted
             else:
