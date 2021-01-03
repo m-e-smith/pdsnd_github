@@ -216,7 +216,7 @@ def load_data(city, month, day):
 
 def view_raw_data(df):
     """
-    Displays five lines of raw data from the dataframe until the user indicates they do not want to see more.
+    Displays ten lines of raw data from the dataframe until the user indicates they do not want to see more.
    
     Args:
         (df) df - dataframe containing data to display
@@ -224,7 +224,8 @@ def view_raw_data(df):
         nothing
     """
     rowfrom = 0
-    rowto = 5
+    numlines = 10
+    rowto = rowfrom + numlines
 
     #print slice: nominated rows, all columns of dataframe
     print(df.iloc[rowfrom:rowto,:])
@@ -234,10 +235,10 @@ def view_raw_data(df):
 
     while rowfrom < numrows: #True:
         try:
-            # DISPLAY 5 LINES OF DATA UNTIL USER INDICATES THEY WANT TO STOP
+            # DISPLAY numlines LINES OF DATA UNTIL USER INDICATES THEY WANT TO STOP
             #increase the slice definition
-            rowfrom += 5
-            rowto += 5
+            rowfrom += numlines
+            rowto += numlines
 
             restart = input('\nWould you like to like to see rows {} to {} ({} total rows)? Enter yes to continue or no to view summary statistics.\n'.format(rowfrom,rowto,numrows))
 
