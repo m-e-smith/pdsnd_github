@@ -7,7 +7,7 @@ from tabulate import tabulate
 #declare constant dictionaries
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
-              'washington': 'washington.csv' }
+              'washington': 'washington.csv','atlanta':'atlanta.csv' }
 MONTH = {'1':'January',
          '2':'February',
          '3':'March',
@@ -53,12 +53,12 @@ def get_filter_city():
         (str) city - name of the city to analyze
     """
     #define the valid user input options
-    validcities=['Chicago','Washington','New York City']
+    validcities=['Chicago','Washington','New York City','Atlanta']
 
     #get a comma seperated string for labels
     city_label = ", ".join(validcities)
 
-    # get user input for city (chicago, new york city, washington). 
+    # get user input for city (chicago, new york city, washington,'atlanta'). 
     while True:
         try:
             city = input("Which city would you like to analyze, type {} or X to abort: ".format(city_label)).title().split(",")
