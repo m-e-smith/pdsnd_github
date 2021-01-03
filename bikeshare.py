@@ -2,11 +2,12 @@ import time
 import datetime
 import pandas as pd
 import numpy as np
+from tabulate import tabulate
 
 #declare constant dictionaries
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
-              'washington': 'washington.csv' }
+              'washington': 'washington.csv','atlanta':'atlanta.csv' }
 MONTH = {'1':'January',
          '2':'February',
          '3':'March',
@@ -52,12 +53,12 @@ def get_filter_city():
         (str) city - name of the city to analyze
     """
     #define the valid user input options
-    validcities=['Chicago','Washington','New York City']
+    validcities=['Chicago','Washington','New York City','Atlanta']
 
     #get a comma seperated string for labels
     city_label = ", ".join(validcities)
 
-    # get user input for city (chicago, new york city, washington). 
+    # get user input for city (chicago, new york city, washington,'atlanta'). 
     while True:
         try:
             city = input("Which city would you like to analyze, type {} or X to abort: ".format(city_label)).title().split(",")
@@ -215,7 +216,7 @@ def load_data(city, month, day):
 
 def view_raw_data(df):
     """
-    Displays five lines of raw data from the dataframe until the user indicates they do not want to see more.
+    Displays ten lines of raw data from the dataframe until the user indicates they do not want to see more.
    
     Args:
         (df) df - dataframe containing data to display
@@ -223,7 +224,8 @@ def view_raw_data(df):
         nothing
     """
     rowfrom = 0
-    rowto = 5
+    numlines = 10
+    rowto = rowfrom + numlines
 
     #print slice: nominated rows, all columns of dataframe
     print(df.iloc[rowfrom:rowto,:])
@@ -233,16 +235,16 @@ def view_raw_data(df):
 
     while rowfrom < numrows: #True:
         try:
-            # DISPLAY 5 LINES OF DATA UNTIL USER INDICATES THEY WANT TO STOP
+            # DISPLAY numlines LINES OF DATA UNTIL USER INDICATES THEY WANT TO STOP
             #increase the slice definition
-            rowfrom += 5
-            rowto += 5
+            rowfrom += numlines
+            rowto += numlines
 
             restart = input('\nWould you like to like to see rows {} to {} ({} total rows)? Enter yes to continue or no to view summary statistics.\n'.format(rowfrom,rowto,numrows))
 
             if restart.lower()=='yes':
-                print(df.iloc[rowfrom:rowto,:])
-
+                #print(df.iloc[rowfrom:rowto,:])
+	print(tabulate(df.iloc[np.arange(rowfrom,rowto)], headers ="keys"))
             elif restart.lower() == 'no':
                 raise UserAborted
             else:
